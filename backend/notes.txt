@@ -1,0 +1,58 @@
+npm init -y
+
+www.npmjs.com/package/socket.io 
+finns det dokumentation till det.
+
+npm i express socket.io 
+
+för nodemon 
+
+npm i -D nodemon
+
+byter ut     "test": "echo \"Error: no test specified\" && exit 1" i script till
+
+"scripts": {
+    "start": "node index",
+     "dev": "nodemon index"
+},
+
+
+
+
+i index.js
+
+// hämta express
+// const express = require('express');
+// const http = require('http');
+// const path = require('path');
+// const socket = require('socket.io');
+
+
+// const app = express();
+// const server = http.createServer(app);
+
+// const PORT = process.env.PORT || 4000;
+
+// server.listen(PORT, () => {
+//     console.log('server running on http://localhost:' + PORT);
+
+// })
+
+
+const express = require("express");
+const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
+
+//testa connections are
+
+io.on("connection", () => {
+    console.log("connection established");
+
+//när vi i front end väljer ljud skickar vi det till back end.
+    socket.on("play", playMsg) => {
+        io.emit("play", playMsg);
+    }
+});
+
+server.listen(3001);
